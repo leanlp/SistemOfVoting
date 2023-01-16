@@ -226,7 +226,7 @@ export class AppComponent {
                     // console.log(viewProposals)
                     // console.log(proposalNames)
                   }
-                  console.log(proposalNames)  
+                  // console.log(proposalNames)  
                   return proposalNames;
                     
                   }
