@@ -4,7 +4,7 @@
   <div class="cover-container d-flex w-100 h-50 p-3 mx-auto flex-column">
     <header class="mb-auto">
       <div>
-        <h3 class="float-md-start px-1 mb-3">Full  Node</h3>
+        <h3 class="float-md-start px-1 mb-3"><h2>{{winner}}</h2><h6 *ngIf="wallet">is Proposal Winner </h6> </h3>
         <nav class="nav nav-masthead justify-content-center ">
           <a class="nav-link fw-bold py-1 px-1 active" aria-current="page" href="#">Goerli</a>
           <a class="nav-link fw-bold py-1 px-1" href="#">Optimism</a>
@@ -25,18 +25,21 @@
         <br>
         <div class="col-lg-12 mx-auto ">
           <div *ngIf="!wallet">
-            <p class="lead mb-4">Connect you Wallet and Start Voting</p>
+            <!-- <p class="lead mb-3">Connect you Wallet and Start Voting</p> -->
             <div class="d-grid gap-2  justify-content-sm-center">
               <button  type="button" class="btn btn-success btn-lg px-4 gap-3 " (click)="connectWallet()">Connect Wallet</button>
-              <button type="button" class="btn btn-primary btn-lg px-4 gap-3" (click)="start()">Start Voting</button>
+              <!-- <button type="button" class="btn btn-primary btn-lg px-4 gap-3" (click)="start()">Start Voting</button> -->
              
               <!-- <button disable type="button" class="btn btn-info btn-lg px-4 gap-3" >Import Wallet</button> -->
+              <br>
           </div>       
           </div>
-          <div *ngIf="wallet">
+
+        
+          <div >
           <!-- <p class=" card text-bg-info container-xxl "> Your address: {{wallet}}</p> -->
           <!-- <p class="card text-bg-info container-xxl "> Token contract: {{tokenContractAddress}}</p> -->
-         <h2>{{winner}}</h2><h6 >is Proposal Winner </h6> 
+         <!-- <h2>{{winner}}</h2><h6 >is Proposal Winner </h6>  -->
           <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
             <div class="card p-2 m-1 text-bg-light">
             <p>Ether Balance</p>

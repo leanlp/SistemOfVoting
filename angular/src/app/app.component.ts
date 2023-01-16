@@ -274,6 +274,7 @@ const signer = MetaMaskprovider.getSigner();
     console.log(address, accounts, signer);
   
   } )
+  this.start()
 }
 }
 
