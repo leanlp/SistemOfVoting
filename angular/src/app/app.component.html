@@ -10,6 +10,7 @@
           <a class="nav-link fw-bold py-1 px-1" href="#">Optimism</a>
           <a class="nav-link fw-bold py-1 px-1" href="#">Polygon</a>
           <a class="nav-link fw-bold py-1 px-1" href="#">Chia</a>
+         
           
         </nav>
         <!-- <p class=" card text-bg-info container-xxl "> Your address: {{wallet}}</p> -->
@@ -35,6 +36,7 @@
           <div *ngIf="wallet">
           <!-- <p class=" card text-bg-info container-xxl "> Your address: {{wallet}}</p> -->
           <!-- <p class="card text-bg-info container-xxl "> Token contract: {{tokenContractAddress}}</p> -->
+         <h2>{{winner}}</h2><h6 >is Proposal Winner </h6> 
           <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
             <div class="card p-2 m-1 text-bg-light">
             <p>Ether Balance</p>
@@ -55,7 +57,7 @@
           <!-- <input class="px-1 py-1 text-bg-dark" #mintAmount type="string" min="0" [max]="5" placeholder="Token Request"> -->
           <button type="button" #mintAmount  class="btn btn-success btn-lg px-1 gap-3" (click)="request(mintAmount.value)">Request permission to vote</button>
         </div>
-          <br>
+          
          
         
           <!-- <div class="btn-group" role="group">
@@ -75,18 +77,20 @@
           <!-- <button type="button" class="btn btn-success btn-lg px-4 gap-3" (click)="vote(voteId.value)">Vote</button> -->
         </div> 
         
-        <br>
+        
               <div>
              
-               
-                <div class="card text-bg-info container-xl px-3 py-2" >
-                  <h6 >Proposal Winner </h6> 
-                  <h2>{{winner}}</h2>
-                </div>
+               <div class="xxx">
+                <!-- <div class="card text-bg-info px-1 py-1" > -->
+                  
+                  
+                <!-- </div> -->
+              </div>
                 <!-- <div>N° {{winnerProposal}} </div> -->
                 <br>
-                <h5 class="voteee">Click for Vote</h5>
+                <!-- <h5 class="voteee">Click for Vote</h5> -->
                 <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
+                
                   
                   <button type="button" class="btn btn-info" (click)="vote(0)">  {{proposals0}}</button>
                   <button type="button" class="btn btn-info"(click)="vote(1)">  {{proposals1}}</button>
@@ -96,15 +100,7 @@
                   <button type="button" class="btn btn-info"(click)="vote(5)">  {{proposals5}}</button>
              
                 </div>
-                <!-- <div class="card text-bg-info container-xl ">
-                <div><p> 0: {{proposals0}}</p></div>
-                <div><p> 1: {{proposals1}}</p></div>
-                <div><p> 2: {{proposals2}}</p></div>
-                <div><p> 3: {{proposals3}}</p></div>
-                <div><p> 4: {{proposals4}}</p></div>
-                <div><p> 5: {{proposals5}}</p></div> -->
-                         <!-- </div>  -->
-                              
+                                            
               </div>
               </div>
              
