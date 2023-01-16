@@ -137,7 +137,7 @@ export class AppComponent {
             this.ballotContract["proposals"]([0]).then(
               (proposals0: any) => {
                 proposals0 = ethers.utils.parseBytes32String(proposals0.name);
-                console.log(proposals0)
+                // console.log(proposals0)
                 this.proposals0 = proposals0
                })
       this.ballotContract["proposals"]([1]).then(
@@ -165,11 +165,11 @@ export class AppComponent {
                     proposals5 = ethers.utils.parseBytes32String(proposals5.name);
                     this.proposals5 = proposals5
                    })
-                   this.ballotContract["proposals"]([6]).then(
-                    (proposals6: any) => {
-                      proposals6 = ethers.utils.parseBytes32String(proposals6.name);
-                      this.proposals6 = proposals6
-                     })
+                  //  this.ballotContract["proposals"]([6]).then(
+                  //   (proposals6: any) => {
+                  //     proposals6 = ethers.utils.parseBytes32String(proposals6.name);
+                  //     this.proposals6 = proposals6
+                  //    })
                    
 
              
@@ -271,7 +271,7 @@ const signer = MetaMaskprovider.getSigner();
   // console.log(signer.getBalance(), "11111")
     
     const accounts = address
-    console.log(address, accounts, signer);
+    // console.log(address, accounts, signer);
   
   } )
   this.start()
