@@ -86,7 +86,7 @@ export class AppComponent {
 //  console.log( signer, this.provider, this.wallet, "222")
   
  this.http
-    .get<any>("http://localhost:3000/token-address")
+    .get<any>("https://lbc.onrender.com/token-address")
     .subscribe((ans) => {
      this.tokenContractAddress = ans.result;
     if (this.tokenContractAddress && this.wallet) {
