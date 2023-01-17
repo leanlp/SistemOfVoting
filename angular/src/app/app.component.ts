@@ -241,7 +241,7 @@ export class AppComponent {
   async request(mintAmount: string){
                 // console.log("Trying to mint to " + this.signer?._address, this.wallet?.address, this.accounts, this.signer?.connect);
                 this.http
-                .post<any>('http://localhost:3000/request-tokens', {address: this.wallet, amount: mintAmount})
+                .post<any>('https://lbc.onrender.com/request-tokens', {address: this.wallet, amount: mintAmount})
                 .subscribe((ans) => {
                   console.log(ans);
                   console.log(this.tokenContractAddress)
@@ -253,7 +253,7 @@ export class AppComponent {
   voteP = ethers.utils.parseEther("10");
 
   async vote(voteId: number) {
-  const vote = await this.ballotContract["vote"](voteId, BigNumber.from(100000000000000).div(1000000000000000) )
+  const vote = await this.ballotContract["vote"](voteId, BigNumber.from(100000000000000).div(100000000000000) )
   console.log("trying to vote for " + voteId);
   await vote.wait()
   const voteTx = vote.hash
