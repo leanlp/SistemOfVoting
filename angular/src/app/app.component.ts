@@ -20,9 +20,9 @@ export class AppComponent {
   tokenContractAddress: string | any;
   wallet: ethers.Wallet | undefined 
   provider: ethers.providers.InfuraProvider| any
-  etherBalance: number | undefined
-  tokenBalance: number | undefined
-  votePower: number | undefined
+  etherBalance: string | undefined
+  tokenBalance: string | undefined
+  votePower: string | undefined
   tokenContract: ethers.Contract | any |string
   ballotContract: ethers.Contract |  any
   wallet2: undefined
@@ -98,20 +98,21 @@ export class AppComponent {
     // this.tokenContract = this.tokenContract.attach(environment.tokenContract).connect(signer)
     const ans = this.tokenContract
   signer.getBalance().then((balanceBn: ethers.BigNumberish) => {
-    this.etherBalance = parseFloat(ethers.utils.formatEther(balanceBn))
+    this.etherBalance = (ethers.utils.formatEther(balanceBn))
+    // this.etherBalance = parseFloat(ethers.utils.formatEther(balanceBn))
     
   });
 
   
   this.tokenContract["balanceOf"](signer.getAddress()).then(
     (tokenBalanceBn: BigNumber) => {
-    this.tokenBalance = parseFloat(
+    this.tokenBalance =  (
       ethers.utils.formatEther(tokenBalanceBn)
       );
   });
   this.tokenContract["getPastVotes"](signer.getAddress(), BN -1 ).then(
-    (votePowerBn: BigNumber) => {
-    this.votePower = parseFloat(ethers.utils.formatEther(votePowerBn)
+    (votePowerBn: string) => {
+    this.votePower = (ethers.utils.formatEther(votePowerBn)
     );
     });
     }
@@ -235,11 +236,11 @@ export class AppComponent {
                   
                 }
           
-              
+                         
       
 
   async request(mintAmount: string){
-                // console.log("Trying to mint to " + this.signer?._address, this.wallet?.address, this.accounts, this.signer?.connect);
+                console.log("mint and delegate to " + this.signer?._address, this.wallet?.address, this.accounts, this.signer?.connect);
                 this.http
                 .post<any>('https://lbc.onrender.com/request-tokens', {address: this.wallet, amount: mintAmount})
                 .subscribe((ans) => {
@@ -277,6 +278,8 @@ const signer = MetaMaskprovider.getSigner();
   this.start()
 }
 }
+
+
 
 
 

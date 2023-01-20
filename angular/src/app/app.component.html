@@ -43,15 +43,15 @@
           <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
             <div class="card p-2 m-1 text-bg-light">
             <p>Ether Balance</p>
-            <p>{{etherBalance}}</p>
+            <p>{{etherBalance | slice:0:3}}</p>
             </div>
             <div class="card p-2 mb-1 text-bg-light">
             <p>Token Balance</p>  
-            <p>{{tokenBalance}}</p>        
+            <p>{{tokenBalance | slice:0:2}}</p>        
             </div>
             <div class="card p-2 m-1 text-bg-light">
                <p>Voting Power</p>
-              <p>{{votePower}}</p>
+              <p>{{votePower | slice:0:1}}</p>
             </div>
             
           </div> 
