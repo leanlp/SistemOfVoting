@@ -5,8 +5,9 @@ import * as tokenJson2 from "./assets/TokenizedBallot.json";
 import { parseEther } from 'ethers/lib/utils';
 import { convertToBytes32Array, isBalanceZero } from './utils/util';
 import { TokenizedBallot__factory } from 'typechain-types';
-import { CreateEHRDto } from './dto/ehr.dto';
-import { EHR } from './entities/ehr.entity';
+// import { CreateEHRDto } from './dto/ehr.dto';
+import { Proposals } from './entities/ehr.entity';
+import { Proposal } from './dto/ehr.dto';
 
 
 
@@ -99,9 +100,9 @@ async deployContract(data: string[]) {
 }
 // End point to create EHR metadata (Ken)
 // Patient create EHR data first time, contract deployment  (Ken)
-async create(req: CreateEHRDto): Promise<{
+async create(req: Proposal): Promise<{
   contractAddress: string;
-  data: EHR;
+  data: Proposals;
 }> {
   const data = [
     req.prop1,

@@ -3,8 +3,8 @@ import { ContractFactory, ethers } from 'ethers';
 import { AppService } from './app.service';
 import { Body, Post, Query } from '@nestjs/common/decorators';
 import { ApiOperation } from '@nestjs/swagger';
-import { CreateEHRDto } from './dto/ehr.dto';
-import { EHR } from './entities/ehr.entity';
+import { Proposal } from './dto/ehr.dto';
+import { Proposals } from './entities/ehr.entity';
 
 @Controller()
 export class AppController {
@@ -26,8 +26,8 @@ export class AppController {
     @Post('create')
     @ApiOperation({ summary: 'new proposalContract' })
     create(
-      @Body() body: CreateEHRDto,
-    ): Promise<{ contractAddress: string; data: EHR }> {
+      @Body() body: Proposal,
+    ): Promise<{ contractAddress: string; data: Proposals }> {
       return this.appService.create(body);
     }
   // @Post('vote')
