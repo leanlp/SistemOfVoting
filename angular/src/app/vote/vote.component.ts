@@ -1,24 +1,25 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import {  inject } from '@angular/core';
 import { BigNumber, Contract, ethers, providers, Signer, Wallet } from 'ethers';
-import tokenJson from '../assets/MyToken.json';
-import tokenJson2 from "../assets/TokenizedBallot.json"
+import tokenJson from './assets/MyToken.json';
+import tokenJson2 from "./assets/TokenizedBallot.json"
 import { Bytes, BytesLike, formatBytes32String, formatEther, formatUnits, getAddress, hexValue, isAddress, parseBytes32String, parseEther } from 'ethers/lib/utils';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Token } from '@angular/compiler';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
-
-
-import { Form } from '@angular/forms';
-import { FormsModule } from '@angular/forms';
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  selector: 'app-vote',
+  templateUrl: './vote.component.html',
+  styleUrls: ['./vote.component.scss']
 })
-export class AppComponent {
+export class VoteComponent implements OnInit {
 
+  
+
+  ngOnInit(): void {
+  }
   MenuSelected?: number ;
   tokenContractAddress: string | any;
   wallet: ethers.Wallet | undefined 
@@ -383,3 +384,4 @@ submitCreate(data: FormGroup) {
 //                return proposal
 // })}
 // proposal(1)
+

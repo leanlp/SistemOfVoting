@@ -1,0 +1,89 @@
+<div class="h-100 ">
+ 
+  <body class="d-flex h-100 text-center text-bg-dark">
+    
+    <div class="cover-container d-flex w-100 h-50 p-3 mx-auto flex-column">
+      <header class="mb-auto">
+        <div>
+          <!-- <h3 class="float-md-start px-1 mb-3"><h2>{{winner}}</h2><h6 *ngIf="wallet">is Proposal Winner </h6> </h3> -->
+          <!-- <nav class="nav nav-masthead justify-content-center "> -->
+            <!-- <a class="nav-link fw-bold py-1 px-1 active" aria-current="page" href="#">Goerli</a> -->
+            <!-- <div><a class="nav-link fw-bold py-1 px-1" routerLink="/vote">Votar</a></div> -->
+            <!-- <div> -->
+            <!-- <a class="nav-link fw-bold py-1 px-1" routerLink="/create-proposal">Create New Proposal</a> -->
+            <!-- </div>   -->
+            <!-- <a class="nav-link fw-bold py-1 px-1" href="#">Chia</a> -->
+           
+            
+          <!-- </nav> -->
+          <!-- <p class=" card text-bg-info container-xxl "> Your address: {{wallet}}</p> -->
+        </div>
+        
+      </header>
+<div >
+    <div>
+                         
+    
+    <h1>Create a New Proposal</h1><p>(deploy a new Smart Contract, check in console you TX)</p>
+    <br>
+    <div >
+    <form [formGroup]="sub" class="form-horizontal">
+      <div formGroupName="data" class="form-group row">
+        <div class="col-md-1"></div>
+        <label class="control-label col-sm-3" for="other">Proposal</label>
+        <div class="col-sm-3">
+          <input formControlName="prop1" #other type="string" placeholder="xch" class="form-control">
+        </div>
+      </div>
+      <div formGroupName="data" class="form-group row">
+        <div class="col-md-1"></div>
+        <label class="control-label col-sm-3" for="other">Proposal</label>
+        <div class="col-sm-3">
+          <input formControlName="prop2" #other type="string" placeholder="eth" class="form-control">
+        </div>
+      </div>
+      <div formGroupName="data" class="form-group row">
+        <div class="col-md-1"></div>
+        <label class="control-label col-sm-3" for="other">Proposal</label>
+        <div class="col-sm-3">
+          <input formControlName="prop3" #other type="string" placeholder="btc" class="form-control">
+        </div>
+      </div>
+      <div formGroupName="data" class="form-group row">
+        <div class="col-md-1"></div>
+        <label class="control-label col-sm-3" for="other">Proposal</label>
+        <div class="col-sm-3">
+          <input formControlName="prop4" #other type="string" placeholder="xmr" class="form-control">
+        </div>
+      </div>
+      <div formGroupName="data" class="form-group row">
+        <div class="col-md-1"></div>
+        <label class="control-label col-sm-3" for="other">Proposal</label>
+        <div class="col-sm-3">
+          <input formControlName="prop5" #other type="string" placeholder="trx" class="form-control">
+        </div>
+      </div>
+      <div formGroupName="data" class="form-group row">
+        <div class="col-md-1"></div>
+        <label class="control-label col-sm-3" for="other">Proposal</label>
+        <div class="col-sm-3">
+          <input formControlName="prop6" #other type="string" placeholder="nexa" class="form-control">
+        </div>
+      </div>
+      </form>
+    </div>
+
+            <br>
+      
+   <div>
+   <div class="col-md-1"></div>
+    <div >
+    <button (click)="submitCreate(sub)" type="button" class="btn btn-outline-primary" id="submit" style="width: min-content;"> Submit</button>
+   </div>
+   </div>
+   
+  </div>
+  </div>
+  </div> 
+   </body>
+  </div>

@@ -4,13 +4,18 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {HttpClientModule} from "@angular/common/http"
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
 import { ethers } from 'ethers';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CreateProposalComponent } from './create-proposal/create-proposal.component';
+import { VoteComponent } from './vote/vote.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CreateProposalComponent,
+    VoteComponent
   ],
   imports: [
     BrowserModule,
