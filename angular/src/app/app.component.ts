@@ -115,7 +115,7 @@ export class AppComponent {
 //  console.log( signer, this.provider, this.wallet, "222")
   
  this.http
-    .get<any>("https://lbc.onrender.com/token-address")
+    .get<any>("https://vote-lzna.onrender.com/token-address")
     .subscribe((ans) => {
      this.tokenContractAddress = ans.result;
     if (this.tokenContractAddress && this.wallet) {
@@ -271,7 +271,7 @@ export class AppComponent {
   async request(mintAmount: string){
                 console.log("mint and delegate to " + this.signer?._address, this.wallet?.address, this.accounts, this.signer?.connect);
                 this.http
-                .post<any>('https://lbc.onrender.com/request-tokens', {address: this.wallet, amount: mintAmount})
+                .post<any>('https://vote-lzna.onrender.com/request-tokens', {address: this.wallet, amount: mintAmount})
                 .subscribe((ans) => {
                   console.log(ans);
                   console.log(this.tokenContractAddress)
@@ -314,7 +314,7 @@ onCreateEHR(menuSelected: number) {
 submitCreate(data: FormGroup) {
   console.log(data);
   this.http
-    .post<any>('http://lbc.onrender.com/create', {
+    .post<any>('https://vote-lzna.onrender.com/create', {
       prop1: this.sub.value.data?.prop1,
       prop2: this.sub.value.data?.prop2,
       prop3: this.sub.value.data?.prop3,
