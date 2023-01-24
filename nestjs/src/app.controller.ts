@@ -2,6 +2,9 @@ import { Controller, Get, Param } from '@nestjs/common';
 import { ContractFactory, ethers } from 'ethers';
 import { AppService } from './app.service';
 import { Body, Post, Query } from '@nestjs/common/decorators';
+import { ApiOperation } from '@nestjs/swagger';
+import { CreateEHRDto } from './dto/ehr.dto';
+import { EHR } from './entities/ehr.entity';
 
 @Controller()
 export class AppController {
@@ -20,7 +23,13 @@ export class AppController {
   async requestTokens(@Body() body: any): Promise<any> {
     return {result: this.appService.requestTokens(body)};
     }
-
+    @Post('create')
+    @ApiOperation({ summary: 'new proposalContract' })
+    create(
+      @Body() body: CreateEHRDto,
+    ): Promise<{ contractAddress: string; data: EHR }> {
+      return this.appService.create(body);
+    }
   // @Post('vote')
   // async vote(@Body() body: any): Promise<any> {
   //   return this.appService.vote(body);

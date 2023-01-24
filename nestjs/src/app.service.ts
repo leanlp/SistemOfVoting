@@ -3,6 +3,10 @@ import { BigNumber, ethers } from 'ethers';
 import * as tokenJson from "./assets/MyToken.json";
 import * as tokenJson2 from "./assets/TokenizedBallot.json";
 import { parseEther } from 'ethers/lib/utils';
+import { convertToBytes32Array, isBalanceZero } from './utils/util';
+import { TokenizedBallot__factory } from 'typechain-types';
+import { CreateEHRDto } from './dto/ehr.dto';
+import { EHR } from './entities/ehr.entity';
 
 
 
@@ -24,6 +28,7 @@ account: string | undefined;
 erc20ContractFactory: ethers.Contract;
   ballotContractFactory: ethers.ContractFactory;
   ballotContract: any;
+  contractAddress: any;
 
 
 
@@ -79,6 +84,41 @@ async vote(body: number) {
   return vote.wait();
 }
  
+
+async deployContract(data: string[]) {
+  console.log('Deploying contract', data);
+  let contract = null;
+  if (await isBalanceZero(this.signer)) {
+    throw new Error('Not enough balance to deploy contract');
+  }
+  const BN = 8332703
+  const contractFactory = new TokenizedBallot__factory(this.signer);
+  contract = await contractFactory.deploy(convertToBytes32Array(data), ballotAddress2023, BN );
+  await contract.deployed();
+  return { address: contract.address, hash: contract.txHash };
+}
+// End point to create EHR metadata (Ken)
+// Patient create EHR data first time, contract deployment  (Ken)
+async create(req: CreateEHRDto): Promise<{
+  contractAddress: string;
+  data: EHR;
+}> {
+  const data = [
+    req.prop1,
+    req.prop2,
+    req.prop3,
+    req.prop4,
+    req.prop5,
+    req.prop6,
+
+  ];
+  return await this.deployContract(data).then(({ address }) => {
+    this.contractAddress = address;
+    const result = { contractAddress: address, data: req };
+    console.log('Contract deployed', result);
+    return result;
+  });
+}
 
 async getProposals() {
   const ballotContract = this.ballotContractFactory

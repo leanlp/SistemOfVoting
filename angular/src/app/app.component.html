@@ -103,14 +103,98 @@
                   <button type="button" class="btn btn-info"(click)="vote(5)">  {{proposals5}}</button>
              
                 </div>
-                                            
+                                           
               </div>
               </div>
-             
-      </div>
-      </div>
+                </div>
+                  </div>
+                  <div>
+                    
+                 
+                        <div>
+                        </div>
+                        <div >
+                         
+                          <hr>
+                          <h1>Create a New Proposal</h1><p>(deploy a new Smart Contract, check in console you TX)</p>
+                          <br>
+                          <div >
+                          <form [formGroup]="sub" class="form-horizontal">
+                            <div formGroupName="data" class="form-group row">
+                              <div class="col-md-1"></div>
+                              <label class="control-label col-sm-3" for="other">Proposal</label>
+                              <div class="col-sm-3">
+                                <input formControlName="prop1" #other type="string" placeholder="xch" class="form-control">
+                              </div>
+                            </div>
+                            <div formGroupName="data" class="form-group row">
+                              <div class="col-md-1"></div>
+                              <label class="control-label col-sm-3" for="other">Proposal</label>
+                              <div class="col-sm-3">
+                                <input formControlName="prop2" #other type="string" placeholder="eth" class="form-control">
+                              </div>
+                            </div>
+                            <div formGroupName="data" class="form-group row">
+                              <div class="col-md-1"></div>
+                              <label class="control-label col-sm-3" for="other">Proposal</label>
+                              <div class="col-sm-3">
+                                <input formControlName="prop3" #other type="string" placeholder="btc" class="form-control">
+                              </div>
+                            </div>
+                            <div formGroupName="data" class="form-group row">
+                              <div class="col-md-1"></div>
+                              <label class="control-label col-sm-3" for="other">Proposal</label>
+                              <div class="col-sm-3">
+                                <input formControlName="prop4" #other type="string" placeholder="xmr" class="form-control">
+                              </div>
+                            </div>
+                            <div formGroupName="data" class="form-group row">
+                              <div class="col-md-1"></div>
+                              <label class="control-label col-sm-3" for="other">Proposal</label>
+                              <div class="col-sm-3">
+                                <input formControlName="prop5" #other type="string" placeholder="trx" class="form-control">
+                              </div>
+                            </div>
+                            <div formGroupName="data" class="form-group row">
+                              <div class="col-md-1"></div>
+                              <label class="control-label col-sm-3" for="other">Proposal</label>
+                              <div class="col-sm-3">
+                                <input formControlName="prop6" #other type="string" placeholder="nexa" class="form-control">
+                              </div>
+                            </div>
+                            </form>
+                          </div>
+                      
+                                  <br>
+                            
+                         <div>
+                         <div class="col-md-1"></div>
+                          <div >
+                          <button (click)="submitCreate(sub)" type="button" class="btn btn-outline-primary" id="submit" style="width: min-content;"> Submit</button>
+                         </div>
+                         </div>
+          
+                      
+                 
+                      
+                  </div>
+                </div>
+                    
+                  
+                 
+               
+           
+         
+   
+   
     </main>
     
+    
+    
+
+
+
+
     <footer class="footer" >
       <div class="">
       
@@ -118,5 +202,5 @@
       <!-- <a href="https://github.com/leanlp" class="text-white">GitHub</a> | <a href="https://twitter.com/0xleanlp" img src="/angular/src/assets/twitter.svg" alt=""></a> -->
     </div>
     </footer>
-  </div>
+  <!-- </div> -->
 

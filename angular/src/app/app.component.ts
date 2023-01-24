@@ -6,9 +6,11 @@ import { Bytes, BytesLike, formatBytes32String, formatEther, formatUnits, getAdd
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Token } from '@angular/compiler';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 
-
+import { Form } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -16,7 +18,7 @@ import { Token } from '@angular/compiler';
 })
 export class AppComponent {
 
-
+  MenuSelected?: number ;
   tokenContractAddress: string | any;
   wallet: ethers.Wallet | undefined 
   provider: ethers.providers.InfuraProvider| any
@@ -57,7 +59,34 @@ export class AppComponent {
   // proposalNames: undefined
   // proposalN1: undefined
 
+ //HCP acces to patient info
+ patientName?: string;
+ dob?: string;
+ heartRate?: number;
+ bloodPressure?: string;
+ oxygenSaturation?: number;
+ temperature?: number;
+ // Owner HCP access patient info page variables
+ //Forms
+ sub = new FormGroup({
+   data: new FormGroup({
+     prop1: new FormControl("Propouesta"),
+     prop2: new FormControl("Propouesta"),
+     prop3: new FormControl("Propouesta"),
+     prop4: new FormControl("Propouesta"),
+     prop5: new FormControl("Propouesta"),
+     prop6: new FormControl("Propouesta"),
+     
+   }),
+ });
  
+  prop1: any;
+  prop2: any;
+  prop3: any;
+  prop4: any;
+  prop5: any;
+  prop6: any;
+
   
 
   constructor(private http: HttpClient){}
@@ -277,6 +306,46 @@ const signer = MetaMaskprovider.getSigner();
   } )
   this.start()
 }
+
+// Simple listener to callback on owner create EHR menu item
+onCreateEHR(menuSelected: number) {
+  // this.ownerMenuSelected = menuSelected;
+}
+submitCreate(data: FormGroup) {
+  console.log(data);
+  this.http
+    .post<any>('http://localhost:3000/create', {
+      prop1: this.sub.value.data?.prop1,
+      prop2: this.sub.value.data?.prop2,
+      prop3: this.sub.value.data?.prop3,
+      prop4: this.sub.value.data?.prop4,
+      prop5: this.sub.value.data?.prop5,
+      prop6: this.sub.value.data?.prop6,
+
+    })
+    .subscribe((ans) => {
+      this.ballotContract = ans.contractAddress;
+      this.prop1 = ans.data.prop1;
+      this.prop2 = ans.data.prop2;
+      this.prop3 = ans.data.prop3;
+      this.prop4 = ans.data.prop4;
+      this.prop5 = ans.data.prop5;
+      this.prop6 = ans.data.prop6;
+  
+      console.log(
+        
+        this.ballotContract,
+        this.prop1,
+        this.prop2,
+        this.prop3,
+        this.prop4,
+        this.prop5,
+        this.prop6,
+     
+      );
+    });
+}
+
 }
 
 
