@@ -314,7 +314,7 @@ onCreateEHR(menuSelected: number) {
 submitCreate(data: FormGroup) {
   console.log(data);
   this.http
-    .post<any>('http://localhost:3000/create', {
+    .post<any>('http://lbc.onrender.com/create', {
       prop1: this.sub.value.data?.prop1,
       prop2: this.sub.value.data?.prop2,
       prop3: this.sub.value.data?.prop3,
