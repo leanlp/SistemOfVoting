@@ -6,6 +6,8 @@
     }
     .body {
         background-color: midnightblue;
+        min-width: 600px;
+       
     }
     
     .btn-group-vertical {
@@ -15,11 +17,19 @@
     }
     .voteee{
         text-align: center;
+        min-width: 500px;
     }
     .form-horizontal{
+        margin-left: 150px;
         // text-align: center;
         // align-items: center;
         // align-content: center;
-        margin-left: 150px;
+        // margin-left: 1.5rem;
+        // width: 500px;
+        // min-width: 200px;
         // background-color: darkgray;
     }
+
+    // .formmmm {
+    //    box-sizing: content-box;
+    // }
