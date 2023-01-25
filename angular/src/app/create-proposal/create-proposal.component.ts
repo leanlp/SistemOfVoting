@@ -12,12 +12,12 @@ export class CreateProposalComponent implements OnInit {
    //Forms
  sub = new FormGroup({
   data: new FormGroup({
-    prop1: new FormControl("Propouesta"),
-    prop2: new FormControl("Propouesta"),
-    prop3: new FormControl("Propouesta"),
-    prop4: new FormControl("Propouesta"),
-    prop5: new FormControl("Propouesta"),
-    prop6: new FormControl("Propouesta"),
+    prop1: new FormControl(""),
+    prop2: new FormControl(""),
+    prop3: new FormControl(""),
+    prop4: new FormControl(""),
+    prop5: new FormControl(""),
+    prop6: new FormControl(""),
     
   }),
 });
