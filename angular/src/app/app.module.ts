@@ -10,12 +10,14 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CreateProposalComponent } from './create-proposal/create-proposal.component';
 import { VoteComponent } from './vote/vote.component';
+import { NewVoteComponent } from './new-vote/new-vote.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CreateProposalComponent,
-    VoteComponent
+    VoteComponent,
+    NewVoteComponent
   ],
   imports: [
     BrowserModule,

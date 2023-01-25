@@ -1,0 +1,144 @@
+<div class="h-90 ">
+ 
+    <body class="d-flex h-100  text-center text-bg-dark">
+      
+      <div class="cover-container d-flex w-100 h-50 p-3 mx-auto flex-column">
+        <header class="mb-auto">
+          <div>
+            <h3 class="float-md-start px-1 mb-3"><h2>{{winner}}</h2><h6 *ngIf="wallet">is Proposal Winner </h6> </h3>
+            <nav class="nav nav-masthead justify-content-center ">
+              <!-- <a class="nav-link fw-bold py-1 px-1 active" aria-current="page" href="#">Goerli</a> -->
+              <!-- <div><a class="nav-link fw-bold py-1 px-1" routerLink="/">Votar</a></div> -->
+              <div>
+              <!-- <a class="nav-link fw-bold py-1 px-1" routerLink="/create-proposal">Create New Proposal</a> -->
+              </div>  
+              <!-- <a class="nav-link fw-bold py-1 px-1" href="#">Chia</a> -->
+             
+              
+            </nav>
+            <!-- <p class=" card text-bg-info container-xxl "> Your address: {{wallet}}</p> -->
+          </div>
+          
+        </header>
+      
+        <main class="px-2">
+          
+          <div class="px-2 py-1 my-2 text-center">
+            <h1 class="display-5 fw-bold">Voting a New Proposal</h1> 
+            <br>
+            <div class="col-lg-12 mx-auto ">
+              <div *ngIf="!wallet ">
+                <!-- <p class="lead mb-3">Connect you Wallet and Start Voting</p> -->
+                <div class="d-grid gap-2  justify-content-sm-center">
+                    <input type="input" value="Address of The Contract Proposal">
+                  <button  type="button" class="btn btn-success btn-lg px-4 gap-3 " (click)="connectWallet()">Connect Wallet</button>
+                  <!-- <button type="button" class="btn btn-primary btn-lg px-4 gap-3" (click)="start()">Start Voting</button> -->
+                 
+                  <!-- <button disable type="button" class="btn btn-info btn-lg px-4 gap-3" >Import Wallet</button> -->
+                  <br>
+              </div>       
+              </div>
+    
+            
+              <div >
+              <!-- <p class=" card text-bg-info container-xxl "> Your address: {{wallet}}</p> -->
+              <!-- <p class="card text-bg-info container-xxl "> Token contract: {{tokenContractAddress}}</p> -->
+             <!-- <h2>{{winner}}</h2><h6 >is Proposal Winner </h6>  -->
+              <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                <div class="card p-2 m-1 text-bg-light">
+                <p>Ether Balance</p>
+                <p>{{etherBalance | slice:0:3}}</p>
+                </div>
+                <div class="card p-2 mb-1 text-bg-light">
+                <p>Token Balance</p>  
+                <p>{{tokenBalance | slice:0:2}}</p>        
+                </div>
+                <div class="card p-2 m-1 text-bg-light">
+                   <p>Voting Power</p>
+                  <p>{{votePower | slice:0:1}}</p>
+                </div>
+                
+              </div> 
+              <div>
+                <br>
+              <!-- <input class="px-1 py-1 text-bg-dark" #mintAmount type="string" min="0" [max]="5" placeholder="Token Request"> -->
+              <button type="button" #mintAmount  class="btn btn-success btn-lg px-1 gap-3" (click)="request(mintAmount.value)">Request permission to vote</button>
+            </div>
+              
+             
+            
+              <!-- <div class="btn-group" role="group">
+                <button type="button" #voteId class=" btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="true">
+                  Select and Vote
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">{{proposals0}}</a></li>
+                  <li><a class="dropdown-item" href="#">{{proposals1}}</a></li>
+                  <li><a class="dropdown-item" href="#">{{proposals2}}</a></li>
+                  <li><a class="dropdown-item" href="#">{{proposals3}}</a></li>
+                  <li><a class="dropdown-item" href="#">{{proposals4}}</a></li>
+                  <li><a class="dropdown-item" href="#">{{proposals5}}</a></li>
+                </ul> -->
+               
+              <div>
+              <!-- <button type="button" class="btn btn-success btn-lg px-4 gap-3" (click)="vote(voteId.value)">Vote</button> -->
+            </div> 
+            
+            
+                  <div>
+                 
+                   <div class="xxx">
+                    <!-- <div class="card text-bg-info px-1 py-1" > -->
+                      
+                      
+                    <!-- </div> -->
+                  </div>
+                    <!-- <div>N° {{winnerProposal}} </div> -->
+                    <br>
+                    <!-- <h5 class="voteee">Click for Vote</h5> -->
+                    <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
+                    
+                      
+                      <button type="button" class="btn btn-info" (click)="vote(0)">  {{proposals0}}</button>
+                      <button type="button" class="btn btn-info"(click)="vote(1)">  {{proposals1}}</button>
+                      <button type="button" class="btn btn-info"(click)="vote(2)">  {{proposals2}}</button>
+                      <button type="button" class="btn btn-info"(click)="vote(3)">  {{proposals3}}</button>
+                      <button type="button" class="btn btn-info"(click)="vote(4)">  {{proposals4}}</button>
+                      <button type="button" class="btn btn-info"(click)="vote(5)">  {{proposals5}}</button>
+                 
+                    </div>
+                                               
+                  </div>
+                  </div>
+                    </div>
+                      </div>
+                      <div>
+                        
+                     
+                            <div>
+                            </div>
+                           
+                    </div>
+                        
+                      
+                     
+       
+        </main>
+        
+        
+        
+    
+    
+    
+    
+        <!-- <footer class="footer" >
+          <div class="">
+          
+          <a href="https://0xlean.tech" class="text-white">0xLean.tech</a> 
+          <a href="https://github.com/leanlp" class="text-white">GitHub</a> | <a href="https://twitter.com/0xleanlp" img src="/angular/src/assets/twitter.svg" alt=""></a>
+        <!-- </div> -->
+        <!-- </footer>  -->
+      <!-- </div> -->
+    
+    
+  

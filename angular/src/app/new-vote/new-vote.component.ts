@@ -1,31 +1,29 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
 import { BigNumber, Contract, ethers, providers, Signer, Wallet } from 'ethers';
-import tokenJson from '../assets/MyToken.json';
-import tokenJson2 from "../assets/TokenizedBallot.json"
+import tokenJson from './assets/MyToken.json';
+import tokenJson2 from "./assets/TokenizedBallot.json"
 import { Bytes, BytesLike, formatBytes32String, formatEther, formatUnits, getAddress, hexValue, isAddress, parseBytes32String, parseEther } from 'ethers/lib/utils';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Token } from '@angular/compiler';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { Injectable } from '@angular/core';
-
-
-
-@Injectable({
-  providedIn: 'root'
-})
-export class SharedDataService {
-  public userData: string | undefined;
-}
+import { SharedDataService } from '../app.component';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  selector: 'app-new-vote',
+  templateUrl: './new-vote.component.html',
+  styleUrls: ['./new-vote.component.scss'],
+  // selector: 'app-display',
+  template: '<p>{{ sharedDataService.userData }}</p>'
 })
-export class AppComponent {
 
+export class NewVoteComponent implements OnInit {
+  sharedDataService: any;
 
+  constructor(private http: HttpClient, sharedDataService: SharedDataService){}
+  ngOnInit(): void {
+  }
   MenuSelected?: number ;
   tokenContractAddress: string | any;
   wallet: ethers.Wallet | undefined 
@@ -36,7 +34,7 @@ export class AppComponent {
   tokenContract: ethers.Contract | any |string
   ballotContract: ethers.Contract |  any
   wallet2: undefined
-  
+  textInput: string | undefined;
   
   
   signer: ethers.providers.JsonRpcSigner | undefined 
@@ -95,9 +93,12 @@ export class AppComponent {
   prop5: any;
   prop6: any;
 
-  
+  submitText() {
+    this.sharedDataService.userData = this.textInput;
+  }
 
-  constructor(private http: HttpClient){}
+
+ 
   
   async start() {
   
@@ -276,17 +277,17 @@ export class AppComponent {
                          
       
 
-  // async request(mintAmount: string){
-  //               // console.log("mint and delegate to " + this.signer?._address, this.wallet?.address, this.accounts, this.signer?.connect);
-  //               this.http
-  //               .post<any>('https://vote-lzna.onrender.com/request-tokens', {address: this.wallet, amount: mintAmount})
-  //               .subscribe((ans) => {
-  //                 console.log(ans);
-  //                 console.log(this.tokenContractAddress)
-  //                 console.log(mintAmount)
-  //               });
+  async request(mintAmount: string){
+                // console.log("mint and delegate to " + this.signer?._address, this.wallet?.address, this.accounts, this.signer?.connect);
+                this.http
+                .post<any>('https://vote-lzna.onrender.com/request-tokens', {address: this.wallet, amount: mintAmount})
+                .subscribe((ans) => {
+                  // console.log(ans);
+                  console.log(`This is the Smart Contract that Mint and Delegate Voting Power in Goerli  + https://goerli.etherscan.io/address/${this.tokenContractAddress}`)
+                  // console.log(mintAmount)
+                });
 
-  // }
+  }
   
   voteP = ethers.utils.parseEther("10");
 
@@ -318,40 +319,6 @@ const signer = MetaMaskprovider.getSigner();
 // Simple listener to callback on owner create EHR menu item
 onCreateEHR(menuSelected: number) {
   // this.ownerMenuSelected = menuSelected;
-}
-submitCreate(data: FormGroup) {
-  console.log(data);
-  this.http
-    .post<any>('https://vote-lzna.onrender.com/create', {
-      prop1: this.sub.value.data?.prop1,
-      prop2: this.sub.value.data?.prop2,
-      prop3: this.sub.value.data?.prop3,
-      prop4: this.sub.value.data?.prop4,
-      prop5: this.sub.value.data?.prop5,
-      prop6: this.sub.value.data?.prop6,
-
-    })
-    .subscribe((ans) => {
-      this.ballotContract = ans.contractAddress;
-      this.prop1 = ans.data.prop1;
-      this.prop2 = ans.data.prop2;
-      this.prop3 = ans.data.prop3;
-      this.prop4 = ans.data.prop4;
-      this.prop5 = ans.data.prop5;
-      this.prop6 = ans.data.prop6;
-  
-      console.log(
-        
-        this.ballotContract,
-        this.prop1,
-        this.prop2,
-        this.prop3,
-        this.prop4,
-        this.prop5,
-        this.prop6,
-     
-      );
-    });
 }
 
 }
@@ -390,3 +357,4 @@ submitCreate(data: FormGroup) {
 //                return proposal
 // })}
 // proposal(1)
+
