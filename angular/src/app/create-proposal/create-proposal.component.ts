@@ -12,12 +12,12 @@ export class CreateProposalComponent implements OnInit {
    //Forms
  sub = new FormGroup({
   data: new FormGroup({
-    prop1: new FormControl(""),
-    prop2: new FormControl(""),
-    prop3: new FormControl(""),
-    prop4: new FormControl(""),
-    prop5: new FormControl(""),
-    prop6: new FormControl(""),
+    prop1: new FormControl("Lionel Messi"),
+    prop2: new FormControl("Julián Álvarez"),
+    prop3: new FormControl("Ángel Di María"),
+    prop4: new FormControl("Alexis Mac Allister"),
+    prop5: new FormControl("Nahuel Molina Lucero"),
+    prop6: new FormControl("Emiliano Martínez"),
     
   }),
 });
@@ -38,7 +38,7 @@ export class CreateProposalComponent implements OnInit {
 
 
   submitCreate(data: FormGroup) {
-    console.log(data);
+    console.log("send data, please await for a new smart contrat is deploted");
     this.http
       .post<any>('https://vote-lzna.onrender.com/create', {
         prop1: this.sub.value.data?.prop1,
@@ -57,18 +57,18 @@ export class CreateProposalComponent implements OnInit {
         this.prop4 = ans.data.prop4;
         this.prop5 = ans.data.prop5;
         this.prop6 = ans.data.prop6;
-    
-        console.log(
+        
+        console.log(`This is the Smart Contract that Mint and Delegate Voting Power in Goerli  + https://goerli.etherscan.io/address/${this.ballotContract}`)
+      
+        console.log(` 
           
-          this.ballotContract,
-          this.prop1,
-          this.prop2,
-          this.prop3,
-          this.prop4,
-          this.prop5,
-          this.prop6,
-       
-        );
+           proposal 1 ${this.prop1} 
+           proposal 2 ${this.prop2}
+           proposal 3 ${this.prop3}  
+           proposal 4 ${this.prop4}
+           proposal 5 ${this.prop5}
+           proposal 6 ${this.prop6}
+          `);
       });
   }
 
