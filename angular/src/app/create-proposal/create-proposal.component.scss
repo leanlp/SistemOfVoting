@@ -20,14 +20,19 @@
         min-width: 500px;
     }
     .form-horizontal{
-        margin-left: 150px;
+    //    display: 
+       justify-content: center;
         // text-align: center;
-        // align-items: center;
+        align-items: center;
         // align-content: center;
         // margin-left: 1.5rem;
         // width: 500px;
         // min-width: 200px;
         // background-color: darkgray;
+    }
+
+    .form-control{
+        min-width: 250px;
     }
 
     // .formmmm {
