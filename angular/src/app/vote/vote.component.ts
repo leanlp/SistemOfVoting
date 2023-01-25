@@ -271,13 +271,13 @@ export class VoteComponent implements OnInit {
       
 
   async request(mintAmount: string){
-                console.log("mint and delegate to " + this.signer?._address, this.wallet?.address, this.accounts, this.signer?.connect);
+                // console.log("mint and delegate to " + this.signer?._address, this.wallet?.address, this.accounts, this.signer?.connect);
                 this.http
                 .post<any>('https://vote-lzna.onrender.com/request-tokens', {address: this.wallet, amount: mintAmount})
                 .subscribe((ans) => {
-                  console.log(ans);
-                  console.log(this.tokenContractAddress)
-                  console.log(mintAmount)
+                  // console.log(ans);
+                  console.log(`This is the Smart Contract that Mint and Delegate Voting Power in Goerli  + https://goerli.etherscan.io/address/${this.tokenContractAddress}`)
+                  // console.log(mintAmount)
                 });
 
   }
