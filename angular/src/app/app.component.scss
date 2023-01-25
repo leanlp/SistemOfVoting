@@ -1,8 +1,10 @@
 .px-2 {
 
 min-block-size: 950px;
+// max-block-size: 1200px;
 // border-radius: 20px;
 }
+
 
 .btn-group-vertical {
     min-width: 300px;
@@ -19,4 +21,6 @@ min-block-size: 950px;
     // margin-left: 150px;
     // min-width: 250px;
 }
-
+footer{
+   margin-left: 3vw;
+}
