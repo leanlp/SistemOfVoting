@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { BigNumber, Contract, ethers, providers, Signer, Wallet } from 'ethers';
 import tokenJson from './assets/MyToken.json';
 import tokenJson2 from "./assets/TokenizedBallot.json"
-import { Bytes, BytesLike, formatBytes32String, formatEther, formatUnits, getAddress, hexValue, isAddress, parseBytes32String, parseEther } from 'ethers/lib/utils';
+import { Bytes, BytesLike, formatBytes32String, formatEther, formatUnits, getAddress, hexValue, isAddress, isHexString, parseBytes32String, parseEther } from 'ethers/lib/utils';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Token } from '@angular/compiler';
@@ -20,10 +20,19 @@ import { SharedDataService } from '../app.component';
 
 export class NewVoteComponent implements OnInit {
   sharedDataService: any;
+  ballot: string | undefined;
+  // ballot: string;
+  
 
   constructor(private http: HttpClient, sharedDataService: SharedDataService){}
+
   ngOnInit(): void {
+    this.text = this.textInput ?? "";
   }
+
+  textInput:string  ="";
+  text:string ="";
+
   MenuSelected?: number ;
   tokenContractAddress: string | any;
   wallet: ethers.Wallet | undefined 
@@ -34,7 +43,7 @@ export class NewVoteComponent implements OnInit {
   tokenContract: ethers.Contract | any |string
   ballotContract: ethers.Contract |  any
   wallet2: undefined
-  textInput: string | undefined;
+  // textInput: string | undefined;
   
   
   signer: ethers.providers.JsonRpcSigner | undefined 
@@ -122,7 +131,7 @@ export class NewVoteComponent implements OnInit {
   // this.signer = await this.provider.getSigner();
 
 //  console.log( signer, this.provider, this.wallet, "222")
-  
+
  this.http
     .get<any>("https://vote-lzna.onrender.com/token-address")
     .subscribe((ans) => {
@@ -141,6 +150,8 @@ export class NewVoteComponent implements OnInit {
     
   });
 
+
+
   
   this.tokenContract["balanceOf"](signer.getAddress()).then(
     (tokenBalanceBn: BigNumber) => {
@@ -155,14 +166,14 @@ export class NewVoteComponent implements OnInit {
     });
     }
    })
-    
+    console.log(this.textInput)
     this.ballotContract = new ethers.Contract(
-      environment.ballotContract,
+      this.textInput,
       tokenJson2.abi,
       signer
     )
 
-    this.ballotContract = this.ballotContract.attach(environment.ballotContract).connect(signer)
+    this.ballotContract = this.ballotContract.attach(this.textInput).connect(signer)
     
     this.ballotContract["winnerName"]().then(
       (winners: string) => {
@@ -311,8 +322,10 @@ const signer = MetaMaskprovider.getSigner();
     
     const accounts = address
     // console.log(address, accounts, signer);
-  
+    
+    
   } )
+  
   this.start()
 }
 
