@@ -1,5 +1,5 @@
-import { Injectable } from '@nestjs/common';
-import { BigNumber, ethers } from 'ethers';
+import { Injectable, Provider } from '@nestjs/common';
+import { BigNumber, ethers, providers } from 'ethers';
 import * as tokenJson from "./assets/MyToken.json";
 import * as tokenJson2 from "./assets/TokenizedBallot.json";
 import { parseEther } from 'ethers/lib/utils';
@@ -51,7 +51,9 @@ constructor() {
     this.signer
   );
   this.ballotContract = this.ballotContractFactory.attach(ballotAddress2023)
- 
+//  console.log(provider)
+ const BN = provider.getBlockNumber
+ console.log(BN)
 }
 
 getTokenAddress() {
@@ -81,10 +83,9 @@ async vote(body: number) {
   const wallet = new ethers.Wallet(process.env.PRIVATE_KEY ?? '');
   const signer = wallet.connect(this.provider);
   const ballotContract = this.ballotContract.attach(ballotAddress2023).connect(this.signer)
-  const vote= await ballotContract.vote(1, ethers.utils.parseEther("13"))
+  const vote= await ballotContract.vote(1, ethers.utils.parseEther("1"))
   return vote.wait();
 }
- 
 
 async deployContract(data: string[]) {
   console.log('Deploying contract', data);
@@ -92,12 +93,17 @@ async deployContract(data: string[]) {
   if (await isBalanceZero(this.signer)) {
     throw new Error('Not enough balance to deploy contract');
   }
-  const BN = 8332703
+  
+ 
+  const provider = new ethers.providers.InfuraProvider("goerli", { infura: 'INFURA_API_KEY' });
+  const BN = await provider.getBlockNumber();
+   console.log(BN)
   const contractFactory = new TokenizedBallot__factory(this.signer);
   contract = await contractFactory.deploy(convertToBytes32Array(data), ballotAddress2023, BN );
   await contract.deployed();
   return { address: contract.address, hash: contract.txHash };
 }
+ 
 // End point to create EHR metadata (Ken)
 // Patient create EHR data first time, contract deployment  (Ken)
 async create(req: Proposal): Promise<{

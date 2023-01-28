@@ -291,7 +291,7 @@ export class AppComponent {
   voteP = ethers.utils.parseEther("10");
 
   async vote(voteId: number) {
-  const vote = await this.ballotContract["vote"](voteId, BigNumber.from(100000000000000).div(100000000000000) )
+  const vote = await this.ballotContract["vote"](voteId, 1/1000000000000000000 )
   console.log("trying to vote for " + voteId);
   await vote.wait()
   const voteTx = vote.hash
@@ -319,40 +319,7 @@ const signer = MetaMaskprovider.getSigner();
 onCreateEHR(menuSelected: number) {
   // this.ownerMenuSelected = menuSelected;
 }
-submitCreate(data: FormGroup) {
-  console.log(data);
-  this.http
-    .post<any>('https://vote-lzna.onrender.com/create', {
-      prop1: this.sub.value.data?.prop1,
-      prop2: this.sub.value.data?.prop2,
-      prop3: this.sub.value.data?.prop3,
-      prop4: this.sub.value.data?.prop4,
-      prop5: this.sub.value.data?.prop5,
-      prop6: this.sub.value.data?.prop6,
 
-    })
-    .subscribe((ans) => {
-      this.ballotContract = ans.contractAddress;
-      this.prop1 = ans.data.prop1;
-      this.prop2 = ans.data.prop2;
-      this.prop3 = ans.data.prop3;
-      this.prop4 = ans.data.prop4;
-      this.prop5 = ans.data.prop5;
-      this.prop6 = ans.data.prop6;
-  
-      console.log(
-        
-        this.ballotContract,
-        this.prop1,
-        this.prop2,
-        this.prop3,
-        this.prop4,
-        this.prop5,
-        this.prop6,
-     
-      );
-    });
-}
 
 }
 

@@ -303,7 +303,7 @@ export class NewVoteComponent implements OnInit {
   voteP = ethers.utils.parseEther("10");
 
   async vote(voteId: number) {
-  const vote = await this.ballotContract["vote"](voteId, BigNumber.from(100000000000000).div(100000000000000) )
+  const vote = await this.ballotContract["vote"](voteId, 1 )
   console.log("trying to vote for " + voteId);
   await vote.wait()
   const voteTx = vote.hash
