@@ -159,7 +159,7 @@ export class NewVoteComponent implements OnInit {
       ethers.utils.formatEther(tokenBalanceBn)
       );
   });
-  this.tokenContract["getPastVotes"](signer.getAddress(), BN -1 ).then(
+  this.tokenContract["getVotes"](signer.getAddress()).then(
     (votePowerBn: string) => {
     this.votePower = (ethers.utils.formatEther(votePowerBn)
     );
