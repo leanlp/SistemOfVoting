@@ -28,7 +28,7 @@ export class AppComponent {
 
   MenuSelected?: number ;
   tokenContractAddress: string | any;
-  wallet: ethers.Wallet | undefined 
+  wallet: ethers.Wallet | undefined
   provider: ethers.providers.InfuraProvider| any
   etherBalance: string | undefined
   tokenBalance: string | undefined
@@ -36,10 +36,10 @@ export class AppComponent {
   tokenContract: ethers.Contract | any |string
   ballotContract: ethers.Contract |  any
   wallet2: undefined
-  
-  
-  
-  signer: ethers.providers.JsonRpcSigner | undefined 
+
+
+
+  signer: ethers.providers.JsonRpcSigner | undefined
   winner: string | undefined
   voteBaBn: string | undefined
   voteBa: string | undefined
@@ -84,10 +84,10 @@ export class AppComponent {
      prop4: new FormControl("Propouesta"),
      prop5: new FormControl("Propouesta"),
      prop6: new FormControl("Propouesta"),
-     
+
    }),
  });
- 
+
   prop1: any;
   prop2: any;
   prop3: any;
@@ -95,52 +95,52 @@ export class AppComponent {
   prop5: any;
   prop6: any;
 
-  
+
 
   constructor(private http: HttpClient){}
-  
+
   async start() {
-  
+
     // this.wallet = ethers.Wallet.createRandom().connect(this.provider)
     // this.signer = (this.wallet).connect(this.provider)
     this.providerGoerliJSON = new ethers.providers.InfuraProvider("goerli", { infura: 'INFURA_API_KEY' })
   // this.wallet = new ethers.Wallet((this.PRIVATE_KEY))
- 
+
   this.provider = new ethers.providers.Web3Provider(window.ethereum)
 // const accounts = await this.provider.send("eth_requestAccounts", [])
   // console.log(accounts);
   const signer = this.provider.getSigner()
  this.wallet = await  signer.getAddress()
- 
+
 
  const BN = await this.providerGoerliJSON.getBlockNumber()
 
-  
+
   // this.wallet = await window.ethereum.request({ method: "eth_accounts" });
   // this.provider = new ethers.providers.Web3Provider(window.ethereum);
   // this.signer = await this.provider.getSigner();
 
 //  console.log( signer, this.provider, this.wallet, "222")
-  
+
  this.http
-    .get<any>("https://vote-lzna.onrender.com/token-address")
+    .get<any>("https://localhost/token-address")
     .subscribe((ans) => {
      this.tokenContractAddress = ans.result;
     if (this.tokenContractAddress && this.wallet) {
     this.tokenContract = new ethers.Contract(
     this.tokenContractAddress,
     tokenJson.abi,
-    signer 
+    signer
     );
     // this.tokenContract = this.tokenContract.attach(environment.tokenContract).connect(signer)
     const ans = this.tokenContract
   signer.getBalance().then((balanceBn: ethers.BigNumberish) => {
     this.etherBalance = (ethers.utils.formatEther(balanceBn))
     // this.etherBalance = parseFloat(ethers.utils.formatEther(balanceBn))
-    
+
   });
 
-  
+
   this.tokenContract["balanceOf"](signer.getAddress()).then(
     (tokenBalanceBn: BigNumber) => {
     this.tokenBalance =  (
@@ -154,7 +154,7 @@ export class AppComponent {
     });
     }
    })
-    
+
     this.ballotContract = new ethers.Contract(
       environment.ballotContract,
       tokenJson2.abi,
@@ -162,7 +162,7 @@ export class AppComponent {
     )
 
     this.ballotContract = this.ballotContract.attach(environment.ballotContract).connect(signer)
-    
+
     this.ballotContract["winnerName"]().then(
       (winners: string) => {
         this.winner = parseBytes32String(winners)
@@ -170,7 +170,7 @@ export class AppComponent {
       this.ballotContract["winningProposal"]().then(
           (winnerProposal: string) => {
             this.winnerProposal = (winnerProposal)
-            }) 
+            })
 
             this.ballotContract["proposals"]([0]).then(
               (proposals0: any) => {
@@ -208,9 +208,9 @@ export class AppComponent {
                   //     proposals6 = ethers.utils.parseBytes32String(proposals6.name);
                   //     this.proposals6 = proposals6
                   //    })
-                   
 
-             
+
+
 
               //  function convertToBytes(proposalsArray: string[]) {
               //   let formattedArray = []
@@ -218,35 +218,35 @@ export class AppComponent {
               //        formattedArray.push(ethers.utils.formatBytes32String(proposalsArray[i]))
               //        console.log(formattedArray)
               //   }
-                
-                          
+
+
               // }
-                   
-              this.getProposals() 
+
+              this.getProposals()
                 const ballotContract = this.ballotContract
                   .attach(environment.ballotContract)
                   .connect(this.provider);
-             
+
                 const viewProposals = (numberOfProposals: number) => {
                   const proposalNames = [];
                   for (let i = 0; i <= proposalNames.length - 1; i++) {
                     let proposalName = ballotContract.proposals(i);
                     proposalName = ethers.utils.parseBytes32String(proposalName.name);
                     proposalNames.push(proposalName);
-                    
+
                     // this.proposalNames =
 
 
                     console.log(proposalName)
                     // console.log(viewProposals(1))
                     // console.log(proposalNames)
-                    
+
                   }
-                  
+
                     return proposalNames;
                   }
                                 }
-             
+
 
 
 
@@ -264,17 +264,17 @@ export class AppComponent {
                     // console.log(viewProposals)
                     // console.log(proposalNames)
                   }
-                  // console.log(proposalNames)  
+                  // console.log(proposalNames)
                   return proposalNames;
-                    
+
                   }
                   const proposals = viewProposals(3);
                   return proposals;
-                  
+
                 }
-          
-                         
-      
+
+
+
 
   // async request(mintAmount: string){
   //               // console.log("mint and delegate to " + this.signer?._address, this.wallet?.address, this.accounts, this.signer?.connect);
@@ -287,7 +287,7 @@ export class AppComponent {
   //               });
 
   // }
-  
+
   voteP = ethers.utils.parseEther("10");
 
   async vote(voteId: number) {
@@ -303,14 +303,14 @@ export class AppComponent {
     const MetaMaskprovider = new ethers.providers.Web3Provider(window.ethereum)
 
 await MetaMaskprovider.send("eth_requestAccounts", []);
-  
+
 const signer = MetaMaskprovider.getSigner();
   await signer.getAddress().then((address) => {
   // console.log(signer.getBalance(), "11111")
-    
+
     const accounts = address
     // console.log(address, accounts, signer);
-  
+
   } )
   this.start()
 }
@@ -330,7 +330,7 @@ onCreateEHR(menuSelected: number) {
 
 // async getProposals() {
 //   const props = await this.ballotContract['proposals'];
- 
+
 //   this.proposals.forEach((element:string, index:number) => {
 //     console.log(`Proposal ${index}: ${element}`)
 //   });
